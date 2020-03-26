@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="json test" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="341a223b-240a-4b40-af59-3ffb39def027">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="My JDBC MySQL Data Adapter "/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/Test_files/main_jrxml"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/Test"/>
+	<propertyExpression name="net.sf.jasperreports.export.html.header"><![CDATA["<script>//alert('Hello from js!')</script>"]]></propertyExpression>
+	<style name="p" hTextAlign="Left" vTextAlign="Top" fontSize="18">
+		<box>
+			<pen lineWidth="0.5"/>
+			<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+		<paragraph leftIndent="5"/>
+	</style>
+	<parameter name="name" class="java.lang.String"/>
+	<parameter name="date" class="java.sql.Date"/>
+	<queryString language="SQL">
+		<![CDATA[select 1 as id;]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+	</field>
+	<variable name="Variable_1" class="java.lang.String"/>
+	<pageHeader>
+		<band height="50">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="100" y="0" width="455" height="50" uuid="381939fd-932d-413b-a538-99c35eb5d4b0"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[((java.util.concurrent.Callable)(() -> {
+    Map<String, Object> map = $P{REPORT_PARAMETERS_MAP};
+    Map result = new HashMap<String, Object>();
+    for (Map.Entry<String, Object> entry : map.entrySet()) {
+        String s = entry.getKey();
+        
+        for (int i = 0; i < s.length(); ++i) {
+            char c = s.charAt(i);
+            if (!(java.lang.Character.isUpperCase(c) || c == '_')) {
+                result.put(entry.getKey(), entry.getValue());
+            }
+        }
+    }
+    return (new org.json.JSONObject(result)).toString();
+})).call()]]></textFieldExpression>
+				<hyperlinkParameter name="title">
+					<hyperlinkParameterExpression><![CDATA["General Information"]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+				<hyperlinkParameter name="content">
+					<hyperlinkParameterExpression><![CDATA["<div><b>Today's date: </b>" + new SimpleDateFormat("MM-dd-yyyy").format(new Date()) + "</div>"]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+				<hyperlinkParameter name="width">
+					<hyperlinkParameterExpression><![CDATA[400]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+				<hyperlinkParameter name="height">
+					<hyperlinkParameterExpression><![CDATA[150]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+				<hyperlinkParameter name="dialogName">
+					<hyperlinkParameterExpression><![CDATA["GenDetails"]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</textField>
+			<image hyperlinkType="copy_link">
+				<reportElement x="0" y="0" width="50" height="50" uuid="6c0b1795-f9bf-4614-86cc-c3f47061d5ed"/>
+				<imageExpression><![CDATA["Bengal_Jack_Sprite.png"]]></imageExpression>
+				<hyperlinkParameter name="parameters">
+					<hyperlinkParameterExpression><![CDATA[((java.util.concurrent.Callable)(() -> {
+    Map<String, Object> map = $P{REPORT_PARAMETERS_MAP};
+    Map result = new HashMap<String, Object>();
+    for (Map.Entry<String, Object> entry : map.entrySet()) {
+        String s = entry.getKey();
+        // сюда можно написать названия параметров, которые надо проигнорировать
+        // if (s.matches("name1|name2|name3")) {
+        //      continue;
+        // }
+        for (int i = 0; i < s.length(); ++i) {
+            char c = s.charAt(i);
+            if (!(java.lang.Character.isUpperCase(c) || c == '_')) {
+                result.put(entry.getKey(), entry.getValue());
+            }
+        }
+    }
+    return com.google.common.net.UrlEscapers.urlFragmentEscaper().escape(
+        (new org.json.JSONObject(result)).toString()
+    );
+})).call()]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+				<hyperlinkParameter name="doAlert">
+					<hyperlinkParameterExpression><![CDATA[true]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</image>
+			<image hyperlinkType="js_loader">
+				<reportElement x="50" y="0" width="50" height="50" uuid="48d1e044-4c61-4d8c-8cc8-395d3acd5277"/>
+				<imageExpression><![CDATA["Bengal_Jack_Sprite.png"]]></imageExpression>
+				<hyperlinkParameter name="code">
+					<hyperlinkParameterExpression><![CDATA["var snowMax=50;var snowColor=['red','green'];var snowEntity='&#x2022;';var snowSpeed=0.75;var snowMinSize=8;var snowMaxSize=40;var snowRefresh=50;var snowStyles='cursor: default; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none;';var snow=[],pos=[],coords=[],lefr=[],marginBottom,marginRight;function randomise(range){rand=Math.floor(range*Math.random());return rand} function moveSnow(){for(i=0;i<=snowMax;i++){coords[i]+=pos[i];snow[i].posY+=snow[i].sink;snow[i].style.left=snow[i].posX+lefr[i]*Math.sin(coords[i])+'px';snow[i].style.top=snow[i].posY+'px';if(snow[i].posY>=marginBottom-2*snow[i].size||parseInt(snow[i].style.left)>(marginRight-3*lefr[i])){snow[i].posX=randomise(marginRight-snow[i].size);snow[i].posY=0}}} function initSnow(){for(i=0;i<=snowMax;i++){var sb=['<span id=\"flake',i,'\" style=\"',snowStyles,'position:absolute;top:-',snowMaxSize,'\">',snowEntity,'</span>'];$('body').append(sb.join(''))} var snowSize=snowMaxSize-snowMinSize;marginBottom=document.body.scrollHeight-5;marginRight=document.body.clientWidth-15;for(i=0;i<=snowMax;i++){coords[i]=0;lefr[i]=Math.random()*15;pos[i]=0.03+Math.random()/10;snow[i]=document.getElementById('flake'+i);snow[i].style.fontFamily='inherit';snow[i].size=randomise(snowSize)+snowMinSize;snow[i].style.fontSize=snow[i].size+'px';snow[i].style.color=snowColor[randomise(snowColor.length)];snow[i].style.zIndex=1000;snow[i].sink=snowSpeed*snow[i].size/5;snow[i].posX=randomise(marginRight-snow[i].size);snow[i].posY=randomise(2*marginBottom-marginBottom-2*snow[i].size);snow[i].style.left=snow[i].posX+'px';snow[i].style.top=snow[i].posY+'px'} setInterval(moveSnow,snowRefresh)} function resize(){marginBottom=document.body.scrollHeight-5;marginRight=document.body.clientWidth-15} initSnow()"]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</image>
+		</band>
+	</pageHeader>
+</jasperReport>
